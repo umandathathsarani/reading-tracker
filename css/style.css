@@ -354,3 +354,9 @@ body {
     text-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
 }
 
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+

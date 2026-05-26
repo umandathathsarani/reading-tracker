@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalBtn = document.getElementById('close-modal');
     const libraryGrid = document.getElementById('library-grid');
 
+    const deleteModal = document.getElementById('delete-modal');
+    const confirmDeleteBtn = document.getElementById('confirm-delete');
+    const cancelDeleteBtn = document.getElementById('cancel-delete');
+    let itemToDelete = null;
+
     if (form) {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -46,6 +51,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (cancelDeleteBtn) {
+        cancelDeleteBtn.addEventListener('click', () => {
+            if (deleteModal) {
+                deleteModal.classList.add('hidden');
+            }
+            itemToDelete = null;
+        });
+    }
+
+    if (confirmDeleteBtn) {
+        confirmDeleteBtn.addEventListener('click', () => {
+            if (itemToDelete !== null) {
+                deleteEntry(itemToDelete);
+                if (deleteModal) {
+                    deleteModal.classList.add('hidden');
+                }
+                itemToDelete = null;
+            }
+        });
+    }
+
     if (libraryGrid) {
         renderLibrary();
     }
@@ -80,8 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.querySelectorAll('.btn-delete').forEach(button => {
                 button.addEventListener('click', function() {
-                    const id = parseInt(this.getAttribute('data-id'));
-                    deleteEntry(id);
+                    itemToDelete = parseInt(this.getAttribute('data-id'));
+                    if (deleteModal) {
+                        deleteModal.classList.remove('hidden');
+                    }
                 });
             });
 
