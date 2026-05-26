@@ -183,16 +183,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('mousemove', function(e) {
-    if (Math.random() > 0.4) {
+    for (let i = 0; i < 2; i++) {
         const star = document.createElement('div');
         star.className = 'star-dust';
         
-        const size = Math.random() * 4 + 2;
+        const size = Math.random() * 4 + 1;
         star.style.width = `${size}px`;
         star.style.height = `${size}px`;
         
-        star.style.left = (e.pageX - size / 2) + 'px';
-        star.style.top = (e.pageY - size / 2) + 'px';
+        const offsetX = (Math.random() - 0.5) * 20;
+        const offsetY = (Math.random() - 0.5) * 20;
+        
+        star.style.left = (e.pageX - size / 2 + offsetX) + 'px';
+        star.style.top = (e.pageY - size / 2 + offsetY) + 'px';
         
         document.body.appendChild(star);
         
