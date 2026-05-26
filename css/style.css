@@ -480,3 +480,40 @@ body {
     font-size: 1.1rem;
     margin-bottom: 0.2rem;
 }
+
+.form-group textarea {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #2a3441;
+    color: var(--text-light);
+    padding: 0.8rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 10px var(--neon-blue-dim);
+}
+
+.mission-note {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background-color: rgba(0, 240, 255, 0.05);
+    border-left: 2px solid #2a3441;
+    color: #8b9bb4;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+.btn-note {
+    color: #e0e6ed;
+    border: 1px solid #4a5568;
+}
+
+.btn-note:hover {
+    background-color: rgba(224, 230, 237, 0.1);
+}
