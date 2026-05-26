@@ -181,3 +181,23 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 });
+
+document.addEventListener('mousemove', function(e) {
+    if (Math.random() > 0.4) {
+        const star = document.createElement('div');
+        star.className = 'star-dust';
+        
+        const size = Math.random() * 4 + 2;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        
+        star.style.left = (e.pageX - size / 2) + 'px';
+        star.style.top = (e.pageY - size / 2) + 'px';
+        
+        document.body.appendChild(star);
+        
+        setTimeout(() => {
+            star.remove();
+        }, 800);
+    }
+});

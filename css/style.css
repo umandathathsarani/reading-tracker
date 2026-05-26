@@ -391,3 +391,23 @@ body {
     letter-spacing: 1px;
 }
 
+.star-dust {
+    position: absolute;
+    pointer-events: none;
+    background-color: var(--neon-blue);
+    box-shadow: 0 0 8px var(--neon-blue), 0 0 12px rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    z-index: 9999;
+    animation: stardustFade 0.8s ease-out forwards;
+}
+
+@keyframes stardustFade {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) translateY(15px);
+    }
+}
