@@ -411,3 +411,72 @@ body {
         transform: scale(0) translateY(15px);
     }
 }
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.about-card {
+    background-color: var(--panel-dark);
+    border: 1px solid #2a3441;
+    border-radius: 4px;
+    padding: 2.5rem;
+    position: relative;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 30px;
+    height: 30px;
+    border-bottom: 2px solid var(--neon-blue);
+    border-right: 2px solid var(--neon-blue);
+}
+
+.about-card h2 {
+    color: var(--neon-blue);
+    margin-bottom: 1.5rem;
+    border-bottom: 1px dashed #2a3441;
+    padding-bottom: 0.5rem;
+}
+
+.dev-name {
+    font-size: 2rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.dev-title {
+    color: #00ff9d;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.dev-bio {
+    color: #8b9bb4;
+    line-height: 1.6;
+}
+
+.tech-list {
+    list-style: none;
+}
+
+.tech-list li {
+    margin-bottom: 1rem;
+    color: #8b9bb4;
+    display: flex;
+    flex-direction: column;
+}
+
+.tech-list strong {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+}
