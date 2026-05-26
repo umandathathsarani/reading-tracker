@@ -1,35 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
+    const form = document.getElementById('new-book-form');
+    const modal = document.getElementById('success-modal');
+    const modalMessage = document.getElementById('modal-message');
+    const closeModalBtn = document.getElementById('close-modal');
 
-  const form = document.getElementById('new-book-form');
-  if (form) {
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    form.addEventListener('submit', function(event) {
+            const titleInput = document.getElementById('title').value;
+            const authorInput = document.getElementById('author').value;
+            const genreInput = document.getElementById('genre').value;
 
-      event.preventDefault();
+            const newEntry = {
+                id: Date.now(),
+                title: titleInput,
+                author: authorInput,
+                genre: genreInput,
+                status: 'Reading',
+                dateAdded: new Date().toLocaleDateString()
+            };
 
-      const titleInput = document.getElementById('title').value;
-      const authorInput = document.getElementById('author').value;
-      const genreInput = document.getElementById('genre').value;
+            let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
+            library.push(newEntry);
+            localStorage.setItem('starlogArchive', JSON.stringify(library));
 
-      const newEntry = {
-          id: Date.now(),
-          title: titleInput,
-          author: authorInput,
-          genre: genreInput,
-          status: 'Reading', 
-          dateAdded: new Date().toLocaleDateString()
-      };
+            form.reset();
 
-      let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
-      
-      library.push(newEntry);
+            modalMessage.innerHTML = `Transmission Logged:<br><strong style="color: #00f0ff;">"${newEntry.title}"</strong><br>has been saved to your archives.`;
+            modal.classList.remove('hidden');
 
+            setTimeout(() => {
+                if (!modal.classList.contains('hidden')) {
+                    modal.classList.add('hidden');
+                }
+            }, 3000);
+        });
+    }
 
-      localStorage.setItem('starlogArchive', JSON.stringify(library));
-
-      form.reset();
-
-      alert(`Transmission Logged: "${newEntry.title}" has been saved to your archives.`);
-    });
-  }
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+    }
 });
