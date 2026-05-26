@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalMessage = document.getElementById('modal-message');
     const closeModalBtn = document.getElementById('close-modal');
     const libraryGrid = document.getElementById('library-grid');
+    const statsGrid = document.getElementById('stats-grid');
 
     const deleteModal = document.getElementById('delete-modal');
     const confirmDeleteBtn = document.getElementById('confirm-delete');
@@ -76,6 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
         renderLibrary();
     }
 
+    if (statsGrid) {
+        renderStats();
+    }
+
     function renderLibrary() {
         let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
 
@@ -138,5 +143,41 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('starlogArchive', JSON.stringify(library));
             renderLibrary();
         }
+    }
+
+    function renderStats() {
+        let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
+        
+        const totalLogs = library.length;
+        const completedLogs = library.filter(book => book.status === 'Completed').length;
+        const readingLogs = library.filter(book => book.status === 'Reading').length;
+        
+        let topGenre = "N/A";
+        if (totalLogs > 0) {
+            const genreCounts = {};
+            library.forEach(book => {
+                genreCounts[book.genre] = (genreCounts[book.genre] || 0) + 1;
+            });
+            topGenre = Object.keys(genreCounts).reduce((a, b) => genreCounts[a] > genreCounts[b] ? a : b);
+        }
+
+        statsGrid.innerHTML = `
+            <div class="stat-card">
+                <div class="stat-value">${totalLogs}</div>
+                <div class="stat-label">Total Transmissions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${completedLogs}</div>
+                <div class="stat-label">Missions Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${readingLogs}</div>
+                <div class="stat-label">Active Missions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="font-size: 2rem; margin-top: 1rem;">${topGenre}</div>
+                <div class="stat-label">Primary Sector</div>
+            </div>
+        `;
     }
 });

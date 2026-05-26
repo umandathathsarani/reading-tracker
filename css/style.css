@@ -360,3 +360,34 @@ body {
     margin-top: 1.5rem;
 }
 
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.stat-card {
+    background-color: var(--panel-dark);
+    border: 1px solid #2a3441;
+    border-radius: 4px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    border-top: 3px solid var(--neon-blue);
+}
+
+.stat-value {
+    font-size: 3.5rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(224, 230, 237, 0.2);
+}
+
+.stat-label {
+    color: var(--neon-blue);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
