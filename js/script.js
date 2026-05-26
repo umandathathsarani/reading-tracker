@@ -47,6 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (libraryGrid) {
+        renderLibrary();
+    }
+
+    function renderLibrary() {
         let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
 
         if (library.length === 0) {
@@ -66,9 +70,45 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p><strong>Status:</strong> <span class="status ${book.status.toLowerCase()}">${book.status}</span></p>
                         <p><strong>Logged:</strong> ${book.dateAdded}</p>
                     </div>
+                    <div class="card-actions">
+                        <button class="action-btn btn-update" data-id="${book.id}">Toggle Status</button>
+                        <button class="action-btn btn-delete" data-id="${book.id}">Purge</button>
+                    </div>
                 `;
                 libraryGrid.appendChild(card);
             });
+
+            document.querySelectorAll('.btn-delete').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    deleteEntry(id);
+                });
+            });
+
+            document.querySelectorAll('.btn-update').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    toggleStatus(id);
+                });
+            });
+        }
+    }
+
+    function deleteEntry(id) {
+        let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
+        library = library.filter(book => book.id !== id);
+        localStorage.setItem('starlogArchive', JSON.stringify(library));
+        renderLibrary();
+    }
+
+    function toggleStatus(id) {
+        let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
+        const bookIndex = library.findIndex(book => book.id === id);
+        
+        if (bookIndex !== -1) {
+            library[bookIndex].status = library[bookIndex].status === 'Reading' ? 'Completed' : 'Reading';
+            localStorage.setItem('starlogArchive', JSON.stringify(library));
+            renderLibrary();
         }
     }
 });

@@ -309,3 +309,48 @@ body {
     background-color: rgba(0, 0, 0, 0.3);
     border: 1px solid #1a212d;
 }
+
+.card-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    border-top: 1px dashed #2a3441;
+    padding-top: 1rem;
+}
+
+.action-btn {
+    padding: 0.5rem 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 2px;
+    background: transparent;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.btn-update {
+    color: var(--neon-blue);
+    border: 1px solid var(--neon-blue);
+}
+
+.btn-update:hover {
+    background-color: var(--neon-blue-dim);
+}
+
+.btn-delete {
+    color: var(--alert-red);
+    border: 1px solid var(--alert-red);
+}
+
+.btn-delete:hover {
+    background-color: rgba(255, 51, 102, 0.2);
+    box-shadow: inset 0 0 10px rgba(255, 51, 102, 0.2);
+}
+
+.status.completed {
+    color: #00ff9d;
+    text-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+}
+
