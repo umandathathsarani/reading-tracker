@@ -142,3 +142,57 @@ body {
         padding: 1.5rem;
     }
 }
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: var(--neon-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.form-group input, 
+.form-group select {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #2a3441;
+    color: var(--text-light);
+    padding: 0.8rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group select:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 10px var(--neon-blue-dim);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: transparent;
+    color: var(--neon-blue);
+    border: 1px solid var(--neon-blue);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    background-color: var(--neon-blue-dim);
+    box-shadow: inset 0 0 10px var(--neon-blue-dim);
+}

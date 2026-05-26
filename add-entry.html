@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Entry | Deep Space Tracker</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="terminal-nav">
+        <div class="nav-logo">
+            <span>🌌 StarLog Archive</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Command Center</a></li>
+            <li><a href="library.html">Library Archive</a></li>
+            <li><a href="add-entry.html" class="active">Log New Entry</a></li>
+            <li><a href="stats.html">Data Logs</a></li>
+            <li><a href="about.html">Mission Brief</a></li>
+        </ul>
+    </nav>
+
+    <main class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Initialize New Log</h1>
+            <p>Input reading material parameters for tracking.</p>
+        </header>
+
+        <section class="form-container active-missions">
+            <form id="new-book-form">
+                <div class="form-group">
+                    <label for="title">Transmission Title (Book/Story Name):</label>
+                    <input type="text" id="title" name="title" required placeholder="e.g., The Martian">
+                </div>
+
+                <div class="form-group">
+                    <label for="author">Author / Creator:</label>
+                    <input type="text" id="author" name="author" required placeholder="e.g., Andy Weir">
+                </div>
+
+                <div class="form-group">
+                    <label for="genre">Classification (Genre):</label>
+                    <select id="genre" name="genre">
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Mystery">Mystery</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Non-Fiction">Non-Fiction</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">Transmit Data</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
