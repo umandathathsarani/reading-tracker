@@ -124,3 +124,21 @@ body {
     background-color: rgba(0, 0, 0, 0.3);
     border: 1px solid #1a212d;
 }
+
+@media (max-width: 768px) {
+    .terminal-nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .dashboard-container {
+        padding: 1.5rem;
+    }
+}
