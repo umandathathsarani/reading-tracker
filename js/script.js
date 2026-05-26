@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
     const form = document.getElementById('new-book-form');
     const modal = document.getElementById('success-modal');
     const modalMessage = document.getElementById('modal-message');
     const closeModalBtn = document.getElementById('close-modal');
     const libraryGrid = document.getElementById('library-grid');
     const statsGrid = document.getElementById('stats-grid');
+    const dashboardGrid = document.getElementById('dashboard-grid');
 
     const deleteModal = document.getElementById('delete-modal');
     const confirmDeleteBtn = document.getElementById('confirm-delete');
@@ -73,15 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (libraryGrid) {
-        renderLibrary();
-    }
-
-    if (statsGrid) {
-        renderStats();
-    }
+    if (libraryGrid) renderLibrary();
+    if (statsGrid) renderStats();
+    if (dashboardGrid) renderDashboard();
 
     function renderLibrary() {
+        if (!libraryGrid) return;
         let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
 
         if (library.length === 0) {
@@ -127,25 +124,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function deleteEntry(id) {
+    function renderDashboard() {
+        if (!dashboardGrid) return;
         let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
-        library = library.filter(book => book.id !== id);
-        localStorage.setItem('starlogArchive', JSON.stringify(library));
-        renderLibrary();
-    }
+        let readingList = library.filter(book => book.status === 'Reading');
 
-    function toggleStatus(id) {
-        let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
-        const bookIndex = library.findIndex(book => book.id === id);
-        
-        if (bookIndex !== -1) {
-            library[bookIndex].status = library[bookIndex].status === 'Reading' ? 'Completed' : 'Reading';
-            localStorage.setItem('starlogArchive', JSON.stringify(library));
-            renderLibrary();
+        if (readingList.length === 0) {
+            dashboardGrid.innerHTML = `<div class="mission-placeholder"><p>No active logs detected. Head to 'Log New Entry' to begin.</p></div>`;
+            dashboardGrid.classList.remove('library-grid');
+        } else {
+            dashboardGrid.innerHTML = '';
+            dashboardGrid.classList.add('library-grid');
+            readingList.forEach(book => {
+                const card = document.createElement('div');
+                card.className = 'book-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <h3>${book.title}</h3>
+                        <span class="genre-tag">${book.genre}</span>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Author:</strong> ${book.author}</p>
+                        <p><strong>Status:</strong> <span class="status ${book.status.toLowerCase()}">${book.status}</span></p>
+                        <p><strong>Logged:</strong> ${book.dateAdded}</p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="action-btn btn-update" data-id="${book.id}">Mark Completed</button>
+                    </div>
+                `;
+                dashboardGrid.appendChild(card);
+            });
+
+            document.querySelectorAll('#dashboard-grid .btn-update').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    toggleStatus(id);
+                });
+            });
         }
     }
 
     function renderStats() {
+        if (!statsGrid) return;
         let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
         
         const totalLogs = library.length;
@@ -179,6 +199,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="stat-label">Primary Sector</div>
             </div>
         `;
+    }
+
+    function deleteEntry(id) {
+        let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
+        library = library.filter(book => book.id !== id);
+        localStorage.setItem('starlogArchive', JSON.stringify(library));
+        if (libraryGrid) renderLibrary();
+        if (dashboardGrid) renderDashboard();
+        if (statsGrid) renderStats();
+    }
+
+    function toggleStatus(id) {
+        let library = JSON.parse(localStorage.getItem('starlogArchive')) || [];
+        const bookIndex = library.findIndex(book => book.id === id);
+        
+        if (bookIndex !== -1) {
+            library[bookIndex].status = library[bookIndex].status === 'Reading' ? 'Completed' : 'Reading';
+            localStorage.setItem('starlogArchive', JSON.stringify(library));
+            if (libraryGrid) renderLibrary();
+            if (dashboardGrid) renderDashboard();
+            if (statsGrid) renderStats();
+        }
     }
 });
 
