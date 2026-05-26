@@ -1,9 +1,18 @@
+# ⚖️ License & Copyright
+© 2026 Binuri Umanda Thathsarani. All rights reserved.
+
+This project, including its source code, design, and branding, is the intellectual property of the developer. No part of this project may be reproduced, distributed, or modified without express written permission from the owner.
+
+Developed by Binuri | Artificial Intelligence Undergraduate @ SLIIT
+
+---
+
 # 🌌 StarLog Archive: Deep Space Tracker
 
 A sleek, interactive web application designed to monitor, categorize, and archive reading transmissions. Built for enthusiasts who want a clean, terminal-inspired interface to track their journey through literature.
 
 ## 🚀 Live Demo
-[View the live archive here](https://umanda-math-grimoire.netlify.app/)
+[View the live archive here](https://binuris-voyage.netlify.app/)
 
 ## 🛠️ Tech Stack
 * **Frontend:** HTML5, CSS3 (Custom animations & flexbox), Vanilla JavaScript
