@@ -239,3 +239,73 @@ body {
     width: auto;
     padding: 0.5rem 2rem;
 }
+
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.book-card {
+    background-color: var(--panel-dark);
+    border: 1px solid #2a3441;
+    border-radius: 4px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.book-card:hover {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue-dim);
+    transform: translateY(-5px);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    border-bottom: 1px dashed #2a3441;
+    padding-bottom: 1rem;
+}
+
+.card-header h3 {
+    color: var(--text-light);
+    font-size: 1.4rem;
+    max-width: 70%;
+}
+
+.genre-tag {
+    background-color: rgba(0, 240, 255, 0.1);
+    color: var(--neon-blue);
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    border: 1px solid var(--neon-blue);
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+.card-body p {
+    margin-bottom: 0.5rem;
+    color: #8b9bb4;
+}
+
+.card-body strong {
+    color: var(--text-light);
+}
+
+.status.reading {
+    color: var(--neon-blue);
+}
+
+.empty-message {
+    text-align: center;
+    color: #8b9bb4;
+    font-size: 1.2rem;
+    grid-column: 1 / -1;
+    padding: 3rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid #1a212d;
+}
